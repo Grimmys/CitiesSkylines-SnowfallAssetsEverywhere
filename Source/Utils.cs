@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using ColossalFramework;
-using ColossalFramework.Plugins;
+using ColossalFramework.PlatformServices;
 
 namespace SnowfallAssetsEverywhere
 {
@@ -41,6 +41,10 @@ namespace SnowfallAssetsEverywhere
         {
             DebugLog($"{collection}: {component?.gameObject?.name}");
             DebugLog($"{collection}'s parent: {component?.gameObject?.transform?.parent?.name}");
+        }
+        public static bool IsSnowfallInstalled()
+        {
+            return PlatformService.IsDlcInstalled((uint)SteamHelper.DLC.SnowFallDLC);
         }
     }
 }

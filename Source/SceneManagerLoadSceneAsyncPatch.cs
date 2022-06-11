@@ -9,10 +9,12 @@ namespace SnowfallAssetsEverywhere
     {
         public static void Prefix(SceneManager __instance, string sceneName, LoadSceneMode mode)
         {
-            Utils.DebugLog("Imminent call to get level scene from SceneManager");
-            if (sceneName == Utils.GetNativeLevelScene() && Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
+            if (Utils.IsSnowfallInstalled())
             {
-                SceneManager.LoadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE, mode);
+                if (sceneName == Utils.GetNativeLevelScene() && Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
+                {
+                    SceneManager.LoadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE, mode);
+                }
             }
         }
     }

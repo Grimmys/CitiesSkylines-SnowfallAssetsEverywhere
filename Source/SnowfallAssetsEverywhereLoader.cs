@@ -18,9 +18,12 @@ namespace SnowfallAssetsEverywhere
         public void OnLevelUnloading()
         {
             Utils.DebugLog("Level is unloading");
-            if (Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
+            if (Utils.IsSnowfallInstalled())
             {
-                SceneManager.UnloadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE);
+                if (Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
+                {
+                    SceneManager.UnloadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE);
+                }
             }
             Utils.ResetNativeLevelScene();
         }
