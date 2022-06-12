@@ -7,7 +7,7 @@ namespace SnowfallAssetsEverywhere
     {
         public string Name
         {
-            get { return "Snowfall Assets on Every Map"; }
+            get { return "Snowfall Assets Everywhere"; }
         }
 
         public string Description
