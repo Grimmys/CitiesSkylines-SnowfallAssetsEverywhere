@@ -14,9 +14,13 @@ namespace SnowfallAssetsEverywhere
                 if (sceneName == Utils.GetNativeLevelScene() && Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
                 {
                     SceneManager.LoadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE, mode);
+                    if (Utils.IsAfterDarkInstalled())
+                    {
+                        SceneManager.LoadSceneAsync(Constants.SNOWFALL_AFTERDARK_SCENE, LoadSceneMode.Additive);
+                    }
+                    SceneManager.LoadSceneAsync(Constants.SNOWFALL_SIGNUP_PACK_SCENE, LoadSceneMode.Additive);
                 }
             }
         }
     }
-
 }

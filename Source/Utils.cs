@@ -46,5 +46,10 @@ namespace SnowfallAssetsEverywhere
         {
             return PlatformService.IsDlcInstalled((uint)SteamHelper.DLC.SnowFallDLC);
         }
+
+        public static bool IsAfterDarkInstalled()
+        {
+            return PlatformService.IsDlcInstalled((uint)SteamHelper.DLC.AfterDarkDLC);
+        }
     }
 }
