@@ -11,6 +11,7 @@ namespace SnowfallAssetsEverywhere
     {
         public static void Prefix(TreeInfo __instance)
         {
+            // Reset mesh if necessary to force reinitialize of the element and avoid rendering issues with LOD mods. 
             if (__instance.m_lodLocations == null)
             {
                 __instance.m_mesh = null;

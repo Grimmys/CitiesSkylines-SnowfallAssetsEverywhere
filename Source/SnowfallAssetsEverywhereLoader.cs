@@ -25,7 +25,7 @@ namespace SnowfallAssetsEverywhere
                     SceneManager.UnloadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE);
                 }
             }
-            Utils.ResetNativeLevelScene();
+            Utils.ResetState();
         }
 
         public void OnReleased()

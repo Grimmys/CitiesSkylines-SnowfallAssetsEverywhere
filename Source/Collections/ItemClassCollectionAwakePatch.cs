@@ -7,10 +7,17 @@ namespace SnowfallAssetsEverywhere
     {
         public static bool Prefix(ItemClassCollection __instance)
         {
-            if (Utils.ShouldBeSkipped(__instance))
+            // Don't skip Winter ItemClassCollection but the one loaded in second place to avoid error with RICO revisited mod.
+            if (__instance.name == "Classes")
             {
-                UnityEngine.Object.Destroy(__instance);
-                return false;
+                if (Utils.ItemClassesAlreadyLoaded())
+                {
+                    return false;
+                } else
+                {
+                    Utils.SetItemClassesLoaded();
+                }
+
             }
             return true;
         }

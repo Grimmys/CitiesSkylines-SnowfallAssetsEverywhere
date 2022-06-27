@@ -12,11 +12,14 @@ namespace SnowfallAssetsEverywhere
         }
 
         private static string nativeLevelScene;
+        private static bool itemClassesLoaded = false;
 
-        public static void ResetNativeLevelScene()
+        public static void ResetState()
         {
             nativeLevelScene = null;
+            itemClassesLoaded = false;
         }
+
         public static string GetNativeLevelScene()
         {
             if (nativeLevelScene != null)
@@ -30,6 +33,16 @@ namespace SnowfallAssetsEverywhere
                 nativeLevelScene = $"{mapEnvironment}Prefabs";
             }
             return nativeLevelScene;
+        }
+
+        public static bool ItemClassesAlreadyLoaded()
+        {
+            return itemClassesLoaded;
+        }
+
+        public static void SetItemClassesLoaded()
+        {
+            itemClassesLoaded = true;
         }
 
         public static bool ShouldBeSkipped(Component component)
