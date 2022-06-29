@@ -41,6 +41,12 @@ namespace SnowfallAssetsEverywhere
                     } else
                     {
                         currentLoadingSceneOperation = SceneManager.LoadSceneAsync(Constants.SUMMER_LEVEL_SCENE, mode);
+                        if (Utils.IsAfterDarkInstalled())
+                        {
+                            nextLevelsToBeLoaded.Enqueue(Constants.AFTERDARK_SCENE);
+                        }
+                        nextLevelsToBeLoaded.Enqueue(Constants.SIGNUP_PACK_SCENE);
+                        nextLevelsToBeLoaded.Enqueue(Constants.PREORDER_PACK_SCENE);
                     }
                 }
             }

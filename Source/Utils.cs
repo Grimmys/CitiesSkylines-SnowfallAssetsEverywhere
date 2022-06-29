@@ -51,7 +51,7 @@ namespace SnowfallAssetsEverywhere
             if (nativeLevelScene != Constants.SNOWFALL_LEVEL_SCENE) {
                 return (component?.gameObject?.transform?.parent?.gameObject?.name == Constants.WINTER_COLLECTIONS || component?.gameObject?.name == Constants.WINTER_EXPANSION_1 || component?.gameObject.name == Constants.WINTER_PREORDER_PACK);
             } else {
-                return (component?.gameObject?.transform?.parent?.gameObject?.name == Constants.SUNNY_COLLECTIONS);
+                return (component?.gameObject?.transform?.parent?.gameObject?.name == Constants.SUNNY_COLLECTIONS || component?.gameObject?.name == Constants.PREORDER_PACK || component?.gameObject?.name == Constants.EXPANSION_1);
             };
         }
 
