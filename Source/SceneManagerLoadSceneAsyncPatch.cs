@@ -10,32 +10,38 @@ namespace SnowfallAssetsEverywhere
     [HarmonyPatch(typeof(SceneManager), "LoadSceneAsync", new Type[] { typeof(string), typeof(LoadSceneMode) })]
     public static class SceneManagerLoadSceneAsyncPatch
     {
-        public static AsyncOperation currentWinterOperation = null;
-        public static Queue<string> nextWinterLevels = new Queue<string>();
+        public static AsyncOperation currentLoadingSceneOperation = null;
+        public static Queue<string> nextLevelsToBeLoaded = new Queue<string>();
 
 
         public static void Prefix(SceneManager __instance, string sceneName, LoadSceneMode mode)
         {
-            if (currentWinterOperation != null && currentWinterOperation.isDone)
+            if (currentLoadingSceneOperation != null && currentLoadingSceneOperation.isDone)
             {
-                currentWinterOperation = null;
-                if (nextWinterLevels.Count > 0)
+                currentLoadingSceneOperation = null;
+                if (nextLevelsToBeLoaded.Count > 0)
                 {
-                    currentWinterOperation = SceneManager.LoadSceneAsync(nextWinterLevels.Dequeue(), LoadSceneMode.Additive);
+                    currentLoadingSceneOperation = SceneManager.LoadSceneAsync(nextLevelsToBeLoaded.Dequeue(), LoadSceneMode.Additive);
                 }
 
             }
 
             if (Utils.IsSnowfallInstalled())
             {
-                if (sceneName == Utils.GetNativeLevelScene() && Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
+                if (sceneName == Utils.GetNativeLevelScene())
                 {
-                    currentWinterOperation = SceneManager.LoadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE, mode);
-                    if (Utils.IsAfterDarkInstalled())
+                    if (Utils.GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE)
                     {
-                        nextWinterLevels.Enqueue(Constants.SNOWFALL_AFTERDARK_SCENE);
+                        currentLoadingSceneOperation = SceneManager.LoadSceneAsync(Constants.SNOWFALL_LEVEL_SCENE, mode);
+                        if (Utils.IsAfterDarkInstalled())
+                        {
+                            nextLevelsToBeLoaded.Enqueue(Constants.SNOWFALL_AFTERDARK_SCENE);
+                        }
+                        nextLevelsToBeLoaded.Enqueue(Constants.SNOWFALL_SIGNUP_PACK_SCENE);
+                    } else
+                    {
+                        currentLoadingSceneOperation = SceneManager.LoadSceneAsync(Constants.SUMMER_LEVEL_SCENE, mode);
                     }
-                    nextWinterLevels.Enqueue(Constants.SNOWFALL_SIGNUP_PACK_SCENE);
                 }
             }
         }

@@ -20,11 +20,13 @@ namespace SnowfallAssetsEverywhere
             }
         }
 
-        private static readonly string[] relevantWinterCollections = { Constants.WINTER_BEAUTIFICATION, Constants.WINTER_MONUMENT, Constants.WINTER_GARBAGE, Constants.WINTER_INDUSTRIAL_FARMING, Constants.WINTER_EXPANSION_1 };
-        private static readonly string[] impactedByChangeCollections = relevantWinterCollections.Concat(new []{Constants.INDUSTRIAL_FARMING, Constants.EXPANSION_1, Constants.WINTER_SIGNUP_PACK}).ToArray();
+        private static readonly string[] relevantNonNativeCollections = { Constants.WINTER_BEAUTIFICATION, Constants.WINTER_MONUMENT, Constants.WINTER_GARBAGE, Constants.WINTER_INDUSTRIAL_FARMING, Constants.WINTER_EXPANSION_1,
+                                                                          Constants.INDUSTRIAL_FARMING };
+        private static readonly string[] impactedByChangeCollections = relevantNonNativeCollections.Concat(new []{Constants.INDUSTRIAL_FARMING, Constants.EXPANSION_1, Constants.WINTER_SIGNUP_PACK}).ToArray();
 
         private static readonly string[] garbageWinterBuildings = { "Snowdump" };
         private static readonly string[] industrialFarmingWinterBuildings = { "4x4_Greenhouse", "3x2_Greenhouse", "2x2_Greenhouse" };
+        private static readonly string[] industrialFarmingSunnyBuildings = { "Farming 4x4 Farm", "Farming3x2", "Farming2x2" };
         private static readonly string[] afterDarkExpansionWinterBuildings = { "2x2_winter_fishing_pier", "Snowmobile Track", "Ice_Fishing_Pond", "Ice Hockey Rink" };
 
         private static void RemoveReplacesFor(string[] replacedNames, string pattern)
@@ -43,12 +45,20 @@ namespace SnowfallAssetsEverywhere
             __state = new OriginalPrefabs((BuildingInfo[])__instance.m_prefabs.Clone(), (string[])__instance.m_replacedNames.Clone());
             if (Utils.ShouldBeSkipped(__instance))
             {
-                if (!relevantWinterCollections.Contains(__instance.gameObject?.name))
+                if (!relevantNonNativeCollections.Contains(__instance.gameObject?.name))
                 {
                     UnityEngine.Object.Destroy(__instance);
                     return false;
                 }
                 __instance.m_replacedNames = null;
+                if (__instance.gameObject?.name == Constants.WINTER_INDUSTRIAL_FARMING)
+                {
+                    __instance.m_prefabs = __instance.m_prefabs.Where(prefab => industrialFarmingWinterBuildings.Contains(prefab.name)).ToArray();
+                }
+                if (__instance.gameObject?.name == Constants.INDUSTRIAL_FARMING)
+                {
+                    __instance.m_prefabs = __instance.m_prefabs.Where(prefab => industrialFarmingSunnyBuildings.Contains(prefab.name)).ToArray();
+                }
                 if (__instance.gameObject?.name == Constants.WINTER_GARBAGE)
                 {
                     __instance.m_prefabs = __instance.m_prefabs.Where(prefab => garbageWinterBuildings.Contains(prefab.name)).ToArray();
@@ -62,19 +72,25 @@ namespace SnowfallAssetsEverywhere
                     __instance.m_prefabs = __instance.m_prefabs.Where(prefab => afterDarkExpansionWinterBuildings.Contains(prefab.name)).ToArray();
                 }
             }
-            if (__instance.gameObject?.name == Constants.INDUSTRIAL_FARMING)
+            else
             {
-                RemoveReplacesFor(__instance.m_replacedNames, "_Greenhouse$");
+                if (__instance.gameObject?.name == Constants.INDUSTRIAL_FARMING)
+                {
+                    RemoveReplacesFor(__instance.m_replacedNames, "_Greenhouse$");
+                }
+                if (__instance.gameObject?.name == Constants.WINTER_INDUSTRIAL_FARMING)
+                {
+                    RemoveReplacesFor(__instance.m_replacedNames, "^Farming");
+                }
+                if (__instance.gameObject?.name == Constants.EXPANSION_1)
+                {
+                    RemoveReplacesFor(__instance.m_replacedNames, "^2x2_winter_fishing_pier$");
+                }
+                if (__instance.gameObject?.name == Constants.WINTER_SIGNUP_PACK || __instance.gameObject?.name == Constants.WINTER_BEAUTIFICATION)
+                {
+                    __instance.m_replacedNames = null;
+                }
             }
-            if (__instance.gameObject?.name == Constants.EXPANSION_1)
-            {
-                RemoveReplacesFor(__instance.m_replacedNames, "^2x2_winter_fishing_pier$");
-            }
-            if (__instance.gameObject?.name == Constants.WINTER_SIGNUP_PACK)
-            {
-                __instance.m_replacedNames = null;
-            }
-
             return true;
         }
 

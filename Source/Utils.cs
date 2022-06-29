@@ -47,7 +47,12 @@ namespace SnowfallAssetsEverywhere
 
         public static bool ShouldBeSkipped(Component component)
         {
-            return GetNativeLevelScene() != Constants.SNOWFALL_LEVEL_SCENE && (component?.gameObject?.transform?.parent?.gameObject?.name == Constants.WINTER_COLLECTIONS || component?.gameObject?.name == Constants.WINTER_EXPANSION_1 || component?.gameObject.name == Constants.WINTER_PREORDER_PACK);
+            var nativeLevelScene = GetNativeLevelScene();
+            if (nativeLevelScene != Constants.SNOWFALL_LEVEL_SCENE) {
+                return (component?.gameObject?.transform?.parent?.gameObject?.name == Constants.WINTER_COLLECTIONS || component?.gameObject?.name == Constants.WINTER_EXPANSION_1 || component?.gameObject.name == Constants.WINTER_PREORDER_PACK);
+            } else {
+                return (component?.gameObject?.transform?.parent?.gameObject?.name == Constants.SUNNY_COLLECTIONS);
+            };
         }
 
         public static void LogCollectionComponent(Component component, string collection)
