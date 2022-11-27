@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using HarmonyLib;
 
 namespace SnowfallAssetsEverywhere
 {
@@ -9,8 +10,12 @@ namespace SnowfallAssetsEverywhere
         {
             if (Utils.ShouldBeSkipped(__instance))
             {
-                UnityEngine.Object.Destroy(__instance);
-                return false;
+                if (__instance.gameObject?.name != Constants.WINTER_GARBAGE)
+                {
+                    UnityEngine.Object.Destroy(__instance);
+                    return false;
+                }
+                __instance.m_prefabs = __instance.m_prefabs.Where(prefab => prefab.name == "Snowplow").ToArray();
             }
             return true;
         }
