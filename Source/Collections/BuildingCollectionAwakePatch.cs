@@ -21,7 +21,7 @@ namespace SnowfallAssetsEverywhere
         }
 
         private static readonly string[] relevantNonNativeCollections = { Constants.WINTER_BEAUTIFICATION, Constants.WINTER_MONUMENT, Constants.WINTER_GARBAGE, Constants.WINTER_INDUSTRIAL_FARMING, Constants.WINTER_EXPANSION_1,
-                                                                          Constants.INDUSTRIAL_FARMING, Constants.EXPANSION_1, Constants.PREORDER_PACK };
+                                                                          Constants.INDUSTRIAL_FARMING, Constants.EXPANSION_1, Constants.SUMMER_EXPANSION_7, Constants.WINTER_EXPANSION_7, Constants.PREORDER_PACK };
         private static readonly string[] impactedByChangeCollections = relevantNonNativeCollections.Concat(new []{Constants.INDUSTRIAL_FARMING, Constants.EXPANSION_1, Constants.WINTER_SIGNUP_PACK}).ToArray();
 
         private static readonly string[] garbageWinterBuildings = { "Snowdump" };
@@ -30,6 +30,8 @@ namespace SnowfallAssetsEverywhere
         private static readonly string[] afterDarkExpansionWinterBuildings = { "2x2_winter_fishing_pier", "Snowmobile Track", "Ice_Fishing_Pond", "Ice Hockey Rink" };
         private static readonly string[] afterDarkExpansionSunnyBuildings = { "2x2_Jet_ski_rental", "2x8_FishingPier", "Skatepark", "Beachvolley Court", "DrivingRange" };
         private static readonly string[] preorderSunnyBuildings = { "Basketball Court", "bouncer_castle" };
+
+        private static bool expansion7AlreadyLoaded = false;
 
         private static void RemoveReplacesFor(string[] replacedNames, string pattern)
         {
@@ -111,6 +113,17 @@ namespace SnowfallAssetsEverywhere
                 else if (__instance.gameObject?.name == Constants.PREORDER_PACK)
                 {
                     RemoveReplacesFor(__instance.m_replacedNames, "^Sled_Hill$");
+                }
+                else if (__instance.gameObject?.name == Constants.EXPANSION_7)
+                {
+                    if (expansion7AlreadyLoaded)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        expansion7AlreadyLoaded = true;
+                    }
                 }
             }
             return true;

@@ -6,6 +6,9 @@ namespace SnowfallAssetsEverywhere
     [HarmonyPatch(typeof(PropCollection), "Awake")]
     public static class PropCollectionAwakePatch
     {
+
+        private static bool expansion7AlreadyLoaded = false;
+
         public static bool Prefix(PropCollection __instance)
         {
             if (Utils.ShouldBeSkipped(__instance))
@@ -19,6 +22,17 @@ namespace SnowfallAssetsEverywhere
                 if (__instance?.gameObject.name == Constants.PREORDER_PACK)
                 {
                     __instance.m_prefabs = __instance.m_prefabs.Where(prefab => prefab.name == "Basketball Court Decal").ToArray();
+                }
+            }
+            else if (__instance.gameObject?.name == Constants.EXPANSION_7)
+            {
+                if (expansion7AlreadyLoaded)
+                {
+                    return false;
+                }
+                else
+                {
+                    expansion7AlreadyLoaded = true;
                 }
             }
             return true;

@@ -38,6 +38,7 @@ namespace SnowfallAssetsEverywhere
                             nextLevelsToBeLoaded.Enqueue(Constants.SNOWFALL_AFTERDARK_SCENE);
                         }
                         nextLevelsToBeLoaded.Enqueue(Constants.SNOWFALL_SIGNUP_PACK_SCENE);
+                        nextLevelsToBeLoaded.Enqueue(Constants.SNOWFALL_INDUSTRY_SCENE);
                     } else
                     {
                         currentLoadingSceneOperation = SceneManager.LoadSceneAsync(Constants.SUMMER_LEVEL_SCENE, mode);
@@ -47,6 +48,7 @@ namespace SnowfallAssetsEverywhere
                         }
                         nextLevelsToBeLoaded.Enqueue(Constants.SIGNUP_PACK_SCENE);
                         nextLevelsToBeLoaded.Enqueue(Constants.PREORDER_PACK_SCENE);
+                        nextLevelsToBeLoaded.Enqueue(Constants.INDUSTRY_SCENE);
                     }
                 }
             }

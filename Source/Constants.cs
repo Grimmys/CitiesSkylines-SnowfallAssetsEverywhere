@@ -6,7 +6,9 @@
         public const string SNOWFALL_LEVEL_SCENE = "WinterPrefabs";
         public const string SUMMER_LEVEL_SCENE = "SunnyPrefabs";
         public const string SNOWFALL_AFTERDARK_SCENE = "WinterExpansion1Prefabs";
+        public const string SNOWFALL_INDUSTRY_SCENE = "WinterExpansion7Prefabs";
         public const string AFTERDARK_SCENE = "Expansion1Prefabs";
+        public const string INDUSTRY_SCENE = "Expansion7Prefabs";
         public const string SNOWFALL_SIGNUP_PACK_SCENE = "WinterSignupPackPrefabs";
         public const string SIGNUP_PACK_SCENE = "SignupPackPrefabs";
         public const string PREORDER_PACK_SCENE = "PreorderPackPrefabs";
@@ -23,5 +25,9 @@
         public const string SIGNUP_PACK = "Signup Pack";
         public const string WINTER_PREORDER_PACK = "Winter Preorder Pack";
         public const string PREORDER_PACK = "Preorder Pack";
+        public const string EXPANSION_7 = "Expansion 7";
+        public const string SUMMER_EXPANSION_7 = "Expansion 7 - Summer Only";
+        public const string WINTER_EXPANSION_7 = "Expansion 7 - Winter Only";
+
     }
 }
