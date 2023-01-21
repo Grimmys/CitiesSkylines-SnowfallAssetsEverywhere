@@ -1,12 +1,17 @@
 ﻿using HarmonyLib;
 
-namespace SnowfallAssetsEverywhere.Source.Collections
+namespace SnowfallAssetsEverywhere
 {
     [HarmonyPatch(typeof(NetCollection), "Awake")]
     public static class NetCollectionAwakePatch
     {
 
         private static bool expansion7AlreadyLoaded = false;
+
+        public static void ResetState()
+        {
+            expansion7AlreadyLoaded = false;
+        }
 
         public static bool Prefix(NetCollection __instance)
         {

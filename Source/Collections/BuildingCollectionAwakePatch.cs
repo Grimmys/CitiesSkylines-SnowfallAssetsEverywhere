@@ -33,6 +33,11 @@ namespace SnowfallAssetsEverywhere
 
         private static bool expansion7AlreadyLoaded = false;
 
+        public static void ResetState()
+        {
+            expansion7AlreadyLoaded = false;
+        }
+
         private static void RemoveReplacesFor(string[] replacedNames, string pattern)
         {
             var regex = new Regex(pattern);

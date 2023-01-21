@@ -8,6 +8,11 @@ namespace SnowfallAssetsEverywhere
 
         private static bool expansion7AlreadyLoaded = false;
 
+        public static void ResetState()
+        {
+            expansion7AlreadyLoaded = false;
+        }
+
         public static bool Prefix(CitizenCollection __instance)
         {
             if (Utils.ShouldBeSkipped(__instance))

@@ -26,6 +26,12 @@ namespace SnowfallAssetsEverywhere
                 }
             }
             Utils.ResetState();
+            BuildingCollectionAwakePatch.ResetState();
+            CitizenCollectionAwakePatch.ResetState();
+            NetCollectionAwakePatch.ResetState();
+            PropCollectionAwakePatch.ResetState();
+            TransportCollectionAwakePatch.ResetState();
+            VehicleCollectionAwakePatch.ResetState();
         }
 
         public void OnReleased()

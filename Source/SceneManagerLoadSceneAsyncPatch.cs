@@ -13,7 +13,6 @@ namespace SnowfallAssetsEverywhere
         public static AsyncOperation currentLoadingSceneOperation = null;
         public static Queue<string> nextLevelsToBeLoaded = new Queue<string>();
 
-
         public static void Prefix(SceneManager __instance, string sceneName, LoadSceneMode mode)
         {
             if (currentLoadingSceneOperation != null && currentLoadingSceneOperation.isDone)
