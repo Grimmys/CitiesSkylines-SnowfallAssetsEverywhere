@@ -53,7 +53,7 @@ namespace SnowfallAssetsEverywhere
         public static bool Prefix(BuildingCollection __instance, out OriginalPrefabs __state)
         {
             __state = new OriginalPrefabs((BuildingInfo[])__instance.m_prefabs.Clone(), (string[])__instance.m_replacedNames.Clone());
-            if (Utils.ShouldBeSkipped(__instance))
+            if (Utils.IsNonNativeComponent(__instance))
             {
                 if (!relevantNonNativeCollections.Contains(__instance.gameObject?.name))
                 {

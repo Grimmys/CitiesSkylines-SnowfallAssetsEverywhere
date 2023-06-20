@@ -15,7 +15,7 @@ namespace SnowfallAssetsEverywhere
 
         public static bool Prefix(CitizenCollection __instance)
         {
-            if (Utils.ShouldBeSkipped(__instance))
+            if (Utils.IsNonNativeComponent(__instance))
             {
                 UnityEngine.Object.Destroy(__instance);
                 return false;

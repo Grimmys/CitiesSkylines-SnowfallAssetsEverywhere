@@ -16,7 +16,7 @@ namespace SnowfallAssetsEverywhere
 
         public static bool Prefix(PropCollection __instance)
         {
-            if (Utils.ShouldBeSkipped(__instance))
+            if (Utils.IsNonNativeComponent(__instance))
             {
                 if (__instance?.gameObject.name != Constants.WINTER_BEAUTIFICATION && __instance?.gameObject.name != Constants.PREORDER_PACK)
                 {

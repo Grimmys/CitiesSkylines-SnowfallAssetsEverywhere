@@ -16,7 +16,7 @@ namespace SnowfallAssetsEverywhere
 
         public static bool Prefix(VehicleCollection __instance)
         {
-            if (Utils.ShouldBeSkipped(__instance))
+            if (Utils.IsNonNativeComponent(__instance))
             {
                 if (__instance.gameObject?.name != Constants.WINTER_GARBAGE)
                 {

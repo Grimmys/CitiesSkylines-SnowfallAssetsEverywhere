@@ -7,7 +7,7 @@ namespace SnowfallAssetsEverywhere
     {
         public static bool Prefix(BuildingCommonCollection __instance)
         {
-            return !Utils.ShouldBeSkipped(__instance);
+            return !Utils.IsNonNativeComponent(__instance);
         }
     }
 }
