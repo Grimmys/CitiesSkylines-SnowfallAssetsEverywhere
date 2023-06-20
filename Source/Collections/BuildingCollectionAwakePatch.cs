@@ -27,6 +27,7 @@ namespace SnowfallAssetsEverywhere
         private static readonly string[] garbageWinterBuildings = { "Snowdump" };
         private static readonly string[] industrialFarmingWinterBuildings = { "4x4_Greenhouse", "3x2_Greenhouse", "2x2_Greenhouse" };
         private static readonly string[] industrialFarmingSunnyBuildings = { "Farming 4x4 Farm", "Farming3x2", "Farming2x2" };
+        private static readonly string[] parkWinterBuildings = { "Ski Lodge", "Skating Rink", "Public Firepit", "Cross-Country Skiing", "Ice Sculpture Park", "Sled_Hill", "Curling Park" };
         private static readonly string[] afterDarkExpansionWinterBuildings = { "2x2_winter_fishing_pier", "Snowmobile Track", "Ice_Fishing_Pond", "Ice Hockey Rink" };
         private static readonly string[] afterDarkExpansionSunnyBuildings = { "2x2_Jet_ski_rental", "2x8_FishingPier", "Skatepark", "Beachvolley Court", "DrivingRange" };
         private static readonly string[] preorderSunnyBuildings = { "Basketball Court", "bouncer_castle" };
@@ -71,6 +72,10 @@ namespace SnowfallAssetsEverywhere
                 else if (__instance.gameObject?.name == Constants.WINTER_GARBAGE)
                 {
                     __instance.m_prefabs = __instance.m_prefabs.Where(prefab => garbageWinterBuildings.Contains(prefab.name)).ToArray();
+                }
+                else if (__instance.gameObject?.name == Constants.WINTER_BEAUTIFICATION)
+                {
+                    __instance.m_prefabs = __instance.m_prefabs.Where(prefab => parkWinterBuildings.Contains(prefab.name)).ToArray();
                 }
                 else if (__instance.gameObject?.name == Constants.WINTER_EXPANSION_1)
                 {
